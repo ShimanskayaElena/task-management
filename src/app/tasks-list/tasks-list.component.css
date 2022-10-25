@@ -1,0 +1,19 @@
+table {
+    width: 90%;
+    margin: auto;
+}
+
+form {
+    width: 90%;
+    margin: 20px auto 0;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+.mat-form-field {
+    flex-grow: 1;
+}
+ 
+button {
+    margin-left: 10px;
+}
