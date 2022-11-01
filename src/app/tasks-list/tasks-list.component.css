@@ -1,19 +1,46 @@
-table {
-    width: 90%;
-    margin: auto;
-}
-
-form {
-    width: 90%;
-    margin: 20px auto 0;
+.form-container {
+    height: 150px;
     display: flex;
     justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.task-form {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
     align-items: baseline;
 }
-.mat-form-field {
-    flex-grow: 1;
+.task-form__input {
+    width: 90%;
+}
+
+.task-form__button {
+    height: 40px;
+}
+
+.task-form__button_color-blue {
+    background-color: blue;
+    color: white;
+}
+
+.task-table {
+    width: 90%;
+    margin: auto;  
+}
+
+.task-table__container-button {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.task-table__button_color-blue {
+    background-color: blue;
+    color: white;
 }
  
-button {
-    margin-left: 10px;
+.task-table__button_color-red {
+    background-color: red;
+    color: white;
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, pipe } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { delay, tap } from 'rxjs/operators';
 
 import  { Task } from './models/task.model';
 
@@ -14,7 +14,10 @@ export class GetdataService {
 
   fetchTasks(): Observable<Task[]> {
     return this.http.get<Task[]>('assets/data.json').pipe(
-      delay(1000)
+      delay(1000),
+      tap(data => {
+        // console.log('GetdataService Observable data', data);
+      })
     );
   }
 

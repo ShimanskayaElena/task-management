@@ -17,12 +17,14 @@ import { TasksListComponent } from './tasks-list/tasks-list.component';
 import { GetdataService } from './getdata.service';
 import { TaskState } from './states/task.state';
 import { LoginFormComponent } from './login-form/login-form.component';
+import { TaskDialogComponent } from './task-dialog/task-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TasksListComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    TaskDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +41,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
     MaterialModule
   ],
   providers: [ GetdataService ],
+  entryComponents: [ TaskDialogComponent ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

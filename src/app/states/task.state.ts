@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Action, Selector, State, StateContext } from "@ngxs/store";
 import { Observable, pipe } from 'rxjs';
-import { tap, mergeMap, catchError } from 'rxjs/operators';
+import { tap, mergeMap, catchError, share } from 'rxjs/operators';
 import { GetdataService } from '../getdata.service';
 import {
     GetTasks,
@@ -30,68 +30,59 @@ export class TaskState {
     }
 
     @Action(GetTasks)
-    // getTasksFromState(ctx: StateContext<ITasksStateModel>, payload: GetTasks) {
-    //     // this.getdataService.fetchTasks().pipe(
-    //     //     tap(data => {
-    //     //         console.log('getTasksFromState data', data);
-    //     //         const state = ctx.getState();
-    //     //         ctx.setState({
-    //     //             ...state,
-    //     //             tasks: data
-    //     //         }) 
-    //     //     }),
-    //     //     catchError((err: any) => {
-    //     //         console.log('getTasksFromState error', err);
-    //     //         return err;
-    //     //         // ctx.dispatch(new GetTasksListFailed());
-    //     //     })
-    //     // );
-    //     // this.getdataService.fetchTasks()
-    //     // .subscribe(data => {
-    //     //     // console.log('getTasksFromState data', data);
-    //     //     const state = ctx.getState();
-    //     //         ctx.setState({
-    //     //             ...state,
-    //     //             tasks: data
-    //     //         });
-    //     // });
-    // }
-    async getTasksFromState(ctx: StateContext<TasksStateModel>, action: GetTasks) {
-        try {
-            const result = await this.getdataService.getTasks();
-            const state = ctx.getState();
-            ctx.patchState({
-                tasks: result
-            });
-        } catch(error) {
-            console.log('getTasksFromState error', error);
-        }
+    getTasksFromState({ getState, patchState }: StateContext<TasksStateModel>, payload: GetTasks) {
+        const state = getState();
+        // when there is no data update on the server
+        if (state.tasks.length === 0) {
+            this.getdataService.fetchTasks().pipe(
+                tap(data => {
+                    patchState({ tasks: data }); 
+                    return data;
+                }),
+                catchError((err: any) => {
+                    console.log('getTasksFromState error', err);
+                    return [];
+                })
+            ).subscribe();
+        } 
     }
+    // async getTasksFromState(ctx: StateContext<TasksStateModel>, action: GetTasks) {
+    //     try {
+    //         const result = await this.getdataService.getTasks();
+    //         // console.log('getTasksFromState Promise result', result);
+    //         const state = ctx.getState();
+    //         ctx.patchState({
+    //             tasks: result
+    //         });
+    //     } catch(error) {
+    //         console.log('getTasksFromState error', error);
+    //     }
+    // }
 
     @Action(AddTasks)
-    addTasks(ctx: StateContext<TasksStateModel>, { newTask }: AddTasks) {
-        const state = ctx.getState();
-        ctx.patchState({
+    addTasks({ getState, patchState }: StateContext<TasksStateModel>, { newTask }: AddTasks) {
+        const state = getState();
+        patchState({
             tasks: [...state.tasks, newTask]
         });
     }
 
     @Action(UpdateTasks)
-    updateTasks(ctx: StateContext<TasksStateModel>, { newTask, id }: UpdateTasks) {
-        const state = ctx.getState();
+    updateTasks({ getState, patchState }: StateContext<TasksStateModel>, { newTask, id }: UpdateTasks) {
+        const state = getState();
         const tasksList = [...state.tasks].map(task => {
             return (task.id === id) ? newTask : task;
         });
-        ctx.patchState({
+        patchState({
             tasks: tasksList
         });
     }
 
     @Action(DeleteTasks)
-    deleteTasks(ctx: StateContext<TasksStateModel>, { id }: DeleteTasks) {
-        const state = ctx.getState();
+    deleteTasks({ getState, patchState }: StateContext<TasksStateModel>, { id }: DeleteTasks) {
+        const state = getState();
         const filteredTasks = state.tasks.filter(task => task.id !== id);
-        ctx.patchState({
+        patchState({
             tasks: filteredTasks
         });
     }
