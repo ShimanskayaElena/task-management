@@ -16,12 +16,16 @@
         ],
         "createDefaultProgram": true
       },
+      "parser": "@typescript-eslint/parser",
       "extends": [
+        "google",
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates",
-        "airbnb-typescript/base"
+        "plugin:@typescript-eslint/recommended-requiring-type-checking"
       ],
-      "plugins": ["import"],
+      "plugins": ["import", "@typescript-eslint"],
       "rules": {
         "@angular-eslint/directive-selector": [
           "error",
@@ -39,8 +43,11 @@
             "style": "kebab-case"
           }
         ],
+        "@typescript-eslint/no-empty-function": "off",
         "@angular-eslint/no-empty-lifecycle-method": "off",
-        "@angular-eslint/no-input-rename": "off"
+        "require-jsdoc": "off",
+        "new-cap": 0,
+        "max-len": ["error", { "code": 120 }]
       }
     },
     {

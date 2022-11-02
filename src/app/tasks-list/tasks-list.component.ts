@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import {Component, OnInit, ErrorHandler} from '@angular/core';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {Select, Store} from '@ngxs/store';
+import {Observable} from 'rxjs';
 import {
   GetTasks,
   AddTasks,
   UpdateTasks,
   DeleteTasks,
 } from '../actions/taska.action';
-import  { Task } from '../models/task.model';
-import  { GetdataService } from '../getdata.service';
-import { TaskState } from '../states/task.state';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { TaskDialogComponent } from '../task-dialog/task-dialog.component';
+import {Task} from '../models/task.model';
+import {GetdataService} from '../getdata.service';
+import {TaskState} from '../states/task.state';
+import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import {TaskDialogComponent} from '../task-dialog/task-dialog.component';
 
 @Component({
   selector: 'app-tasks-list',
@@ -25,6 +25,7 @@ export class TasksListComponent implements OnInit {
 
   tasksForm!: FormGroup;
 
+  // eslint-disable-next-line @typescript-eslint/unbound-method
   @Select(TaskState.selectTasks)
     tasksList$!: Observable<Task[]>;
   // tasksList$!: Observable<Task[]>;
@@ -36,11 +37,14 @@ export class TasksListComponent implements OnInit {
   ) {
     this.store.dispatch(new GetTasks());
     this.tasksForm = new FormGroup({
+      // eslint-disable-next-line @typescript-eslint/unbound-method
       name: new FormControl('', [Validators.required]),
     });
 
-    // this.tasksList$ = this.store.select(state => state.task.tasks); 
-    // this.isListTasks = this.store.selectSnapshot<TasksStateModel>(state => state.task.tasks.length);
+    // this.tasksList$ = this.store.select(state => state.task.tasks);
+    // this.isListTasks = this.store.selectSnapshot<TasksStateModel>(state => {
+    //    return state.task.tasks.length;
+    //  });
     // console.log('TasksListComponent isListTasks', this.isListTasks);
     // if (!this.isListTasks) {
     //     this.store.dispatch(new GetTasks());
@@ -49,9 +53,14 @@ export class TasksListComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  get name() {
+    return this.tasksForm.get('name');
+  }
+
   addTask(): void {
-    const newTask = {
+    const newTask: Task = {
       id: `string_${Math.trunc(Math.random() * 10)}`,
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
       name: this.tasksForm.value.name,
       created: '24.10.2022 22:50',
       completed: false,
@@ -67,7 +76,8 @@ export class TasksListComponent implements OnInit {
       created: '24.10.2022 22:50',
       completed: false,
     };
-    // this.getdataService.updateTasks(i, payload).subscribe((data: sTask) => console.log('Update ', data));
+    // this.getdataService.updateTasks(i, payload)
+    // .subscribe((data: sTask) => console.log('Update ', data));
     this.store.dispatch(new UpdateTasks(newTask, id));
   }
 
@@ -88,8 +98,7 @@ export class TasksListComponent implements OnInit {
     this.store.dispatch(new DeleteTasks(id));
   }
 
-  onRowClicked(row: any) {
+  onRowClicked(row: ErrorHandler) {
     console.log('Row clicked: ', row);
   }
-
 }
