@@ -7,33 +7,33 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatDialogModule } from "@angular/material/dialog";
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        MatIconModule,
-        MatTableModule,
-        MatButtonModule,
-        MatCheckboxModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatDatepickerModule,
-        MatDialogModule
-    ],
-    exports: [
-        CommonModule,
-        MatIconModule,
-        MatTableModule,
-        MatButtonModule,
-        MatCheckboxModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatDatepickerModule,
-        MatDialogModule
-    ],
-    providers: [
-        MatDatepickerModule,
-    ]
+  imports: [
+    CommonModule,
+    MatIconModule,
+    MatTableModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatDialogModule,
+  ],
+  exports: [
+    CommonModule,
+    MatIconModule,
+    MatTableModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatDialogModule,
+  ],
+  providers: [
+    MatDatepickerModule,
+  ],
 })
 export class MaterialModule { }

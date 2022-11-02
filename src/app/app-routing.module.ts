@@ -7,20 +7,20 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/task-list'
+    redirectTo: '/task-list',
   },
   { 
     path: 'task-list',
-    component: TasksListComponent
+    component: TasksListComponent,
   },
   { 
     path: 'login',
-    component: LoginFormComponent
-  }
+    component: LoginFormComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule { }

@@ -24,7 +24,7 @@ import { TaskDialogComponent } from './task-dialog/task-dialog.component';
     AppComponent,
     TasksListComponent,
     LoginFormComponent,
-    TaskDialogComponent
+    TaskDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,11 +38,11 @@ import { TaskDialogComponent } from './task-dialog/task-dialog.component';
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsFormPluginModule.forRoot(),
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
   ],
   providers: [ GetdataService ],
   entryComponents: [ TaskDialogComponent ],
   bootstrap: [AppComponent],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })
 export class AppModule { }
