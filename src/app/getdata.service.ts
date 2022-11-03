@@ -1,22 +1,22 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {delay} from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
-import {Task} from './models/task.model';
+import { Task } from './models/task.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GetdataService {
-  constructor(private http:HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   fetchTasks(): Observable<Task[]> {
     return this.http.get<Task[]>('assets/data.json').pipe(
-        delay(1000),
-        // tap(data => {
-        //   console.log('GetdataService Observable data', data);
-        // }),
+      delay(1000)
+      // tap(data => {
+      //   console.log('GetdataService Observable data', data);
+      // }),
     );
   }
 

@@ -1,18 +1,13 @@
-import {Component, OnInit, ErrorHandler} from '@angular/core';
-import {FormGroup, FormControl, Validators} from '@angular/forms';
-import {Select, Store} from '@ngxs/store';
-import {Observable} from 'rxjs';
-import {
-  GetTasks,
-  AddTasks,
-  UpdateTasks,
-  DeleteTasks,
-} from '../actions/taska.action';
-import {Task} from '../models/task.model';
-import {GetdataService} from '../getdata.service';
-import {TaskState} from '../states/task.state';
-import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
-import {TaskDialogComponent} from '../task-dialog/task-dialog.component';
+import { Component, OnInit, ErrorHandler } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Select, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { GetTasks, AddTasks, UpdateTasks, DeleteTasks } from '../actions/taska.action';
+import { Task } from '../models/task.model';
+import { GetdataService } from '../getdata.service';
+import { TaskState } from '../states/task.state';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { TaskDialogComponent } from '../task-dialog/task-dialog.component';
 
 @Component({
   selector: 'app-tasks-list',
@@ -27,13 +22,13 @@ export class TasksListComponent implements OnInit {
 
   // eslint-disable-next-line @typescript-eslint/unbound-method
   @Select(TaskState.selectTasks)
-    tasksList$!: Observable<Task[]>;
+  tasksList$!: Observable<Task[]>;
   // tasksList$!: Observable<Task[]>;
 
   constructor(
     private getdataService: GetdataService,
     private store: Store,
-    private dialog: MatDialog,
+    private dialog: MatDialog
   ) {
     this.store.dispatch(new GetTasks());
     this.tasksForm = new FormGroup({
@@ -51,7 +46,7 @@ export class TasksListComponent implements OnInit {
     // }
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   get name() {
     return this.tasksForm.get('name');

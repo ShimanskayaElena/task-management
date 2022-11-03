@@ -23,7 +23,9 @@
         "plugin:@typescript-eslint/recommended",
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking"
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "plugin:@typescript-eslint/strict",
+        "plugin:prettier/recommended"
       ],
       "plugins": ["import", "@typescript-eslint"],
       "rules": {
@@ -43,11 +45,19 @@
             "style": "kebab-case"
           }
         ],
+        "@angular-eslint/component-class-suffix": [
+          "error",
+          {
+            "suffixes": ["Page", "Component"]
+          }
+        ],
         "@typescript-eslint/no-empty-function": "off",
         "@angular-eslint/no-empty-lifecycle-method": "off",
         "require-jsdoc": "off",
         "new-cap": 0,
-        "max-len": ["error", { "code": 120 }]
+        "max-len": ["error", { "code": 120 }],
+        "@typescript-eslint/member-ordering": 0,
+        "@typescript-eslint/naming-convention": 0
       }
     },
     {
@@ -58,6 +68,14 @@
         "plugin:@angular-eslint/template/recommended"
       ],
       "rules": {}
+    },
+    {
+      "files": ["*.html"],
+      "excludedFiles": ["*inline-template-*.component.html"],
+      "extends": ["plugin:prettier/recommended"],
+      "rules": {
+        "prettier/prettier": ["error", { "parser": "angular" }]
+      }
     },
     {
       "files": ["src/**/*.spec.ts', 'src/**/*.d.ts"],

@@ -1,7 +1,7 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {TasksListComponent} from './tasks-list/tasks-list.component';
-import {LoginFormComponent} from './login-form/login-form.component';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { TasksListComponent } from './tasks-list/tasks-list.component';
+import { LoginFormComponent } from './login-form/login-form.component';
 
 const routes: Routes = [
   {
@@ -23,4 +23,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+// eslint-disable-next-line @typescript-eslint/no-extraneous-class
+export class AppRoutingModule {}
