@@ -7,12 +7,14 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "npx eslint \"src/**/*.{js,jsx,ts,tsx,html}\" --quiet --fix",
+    "format": "npx prettier  --write \"src/**/*.{js,jsx,ts,tsx,html,css,scss}\" "
   },
   "lint-staged": {
     "*.{js,ts}": [
       "eslint --fix"
-    ]
+    ],
+    "*.{js,json,css,scss,less,md,ts,html,component.html}": "prettier --write"
   },
   "private": true,
   "dependencies": {

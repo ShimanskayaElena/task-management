@@ -9,19 +9,25 @@
       "typescriptreact",
       "html"
     ],
+    "editor.bracketPairColorization.enabled": true,
+    "source.fixAll.eslint": true ,
     "[html]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode",
       "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
       },
-      "editor.formatOnSave": false
+      "editor.formatOnSave": true
+    },
+    "[css]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.formatOnSave": true
     },
     "[typescript]": {
-      "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
       "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
       },
-      "editor.formatOnSave": false
+      "editor.formatOnSave": true
     },
     "editor.suggest.snippetsPreventQuickSuggestions": false,
     "editor.inlineSuggest.enabled": true

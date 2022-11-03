@@ -20,7 +20,6 @@ export class TasksListComponent implements OnInit {
 
   tasksForm!: FormGroup;
 
-  // eslint-disable-next-line @typescript-eslint/unbound-method
   @Select(TaskState.selectTasks)
   tasksList$!: Observable<Task[]>;
   // tasksList$!: Observable<Task[]>;
@@ -32,7 +31,6 @@ export class TasksListComponent implements OnInit {
   ) {
     this.store.dispatch(new GetTasks());
     this.tasksForm = new FormGroup({
-      // eslint-disable-next-line @typescript-eslint/unbound-method
       name: new FormControl('', [Validators.required]),
     });
 

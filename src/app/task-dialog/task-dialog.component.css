@@ -1,13 +1,13 @@
 .update-task-header {
-    text-align: center;
+  text-align: center;
 }
 .update-task-form {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    width: 220px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 220px;
 }
 
 .container-buttons {
-    justify-content: space-evenly;
+  justify-content: space-evenly;
 }
