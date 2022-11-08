@@ -1,0 +1,20 @@
+.task-table {
+  width: 90%;
+  margin: auto;
+}
+
+.task-table__container-button {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.task-table__button_color-blue {
+  background-color: blue;
+  color: white;
+}
+
+.task-table__button_color-red {
+  background-color: red;
+  color: white;
+}

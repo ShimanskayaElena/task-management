@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TasksListComponent } from './tasks-list/tasks-list.component';
 import { LoginFormComponent } from './login-form/login-form.component';
+import { AppRoutes } from './config/routes.config';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/task-list',
+    redirectTo: AppRoutes.TaskList,
   },
   {
-    path: 'task-list',
-    component: TasksListComponent,
+    path: AppRoutes.TaskList,
+    loadChildren: () => import('./views/tasks-list/tasks-list.module').then(m => m.TasksListModule),
   },
   {
-    path: 'login',
+    path: AppRoutes.Login,
     component: LoginFormComponent,
   },
 ];

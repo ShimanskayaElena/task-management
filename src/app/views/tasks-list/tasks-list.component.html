@@ -1,14 +1,4 @@
-<div class="form-container">
-  <form class="task-form" [formGroup]="tasksForm" (ngSubmit)="addTask()" novalidate>
-    <mat-form-field class="task-form__input" appearance="fill">
-      <mat-label>New Task</mat-label>
-      <input matInput formControlName="name" />
-    </mat-form-field>
-    <button class="task-form__button task-form__button_color-blue" mat-raised-button type="submit">
-      Add
-    </button>
-  </form>
-</div>
+<app-new-task></app-new-task>
 
 <table class="task-table" mat-table [dataSource]="tasksList$">
   <ng-container matColumnDef="id">

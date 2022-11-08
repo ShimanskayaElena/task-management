@@ -1,4 +1,4 @@
-import { Task } from '../models/task.model';
+import { Task } from '../interfaces/task.interface';
 
 // eslint-disable-next-line @typescript-eslint/no-extraneous-class
 export class GetTasks {

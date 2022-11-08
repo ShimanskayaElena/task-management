@@ -2,9 +2,9 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Task } from '../models/task.model';
+import { Task } from 'src/app/interfaces/task.interface';
 import { Store } from '@ngxs/store';
-import { UpdateTasks } from '../actions/taska.action';
+import { UpdateTasks } from 'src/app/actions/taska.action';
 
 @Component({
   selector: 'app-task-dialog',

@@ -13,14 +13,12 @@ import { MaterialModule } from './shared/material.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TasksListComponent } from './tasks-list/tasks-list.component';
-import { GetdataService } from './getdata.service';
+import { GetdataService } from './core/getdata.service';
 import { TaskState } from './states/task.state';
 import { LoginFormComponent } from './login-form/login-form.component';
-import { TaskDialogComponent } from './task-dialog/task-dialog.component';
 
 @NgModule({
-  declarations: [AppComponent, TasksListComponent, LoginFormComponent, TaskDialogComponent],
+  declarations: [AppComponent, LoginFormComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -36,7 +34,6 @@ import { TaskDialogComponent } from './task-dialog/task-dialog.component';
     MaterialModule,
   ],
   providers: [GetdataService],
-  entryComponents: [TaskDialogComponent],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

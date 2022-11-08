@@ -1,13 +1,13 @@
 import { Component, OnInit, ErrorHandler } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { GetTasks, AddTasks, UpdateTasks, DeleteTasks } from '../actions/taska.action';
-import { Task } from '../models/task.model';
-import { GetdataService } from '../getdata.service';
-import { TaskState } from '../states/task.state';
+import { GetTasks, UpdateTasks, DeleteTasks } from 'src/app/actions/taska.action';
+import { Task } from 'src/app/interfaces/task.interface';
+import { GetdataService } from 'src/app/core/getdata.service';
+import { TaskState } from 'src/app/states/task.state';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { TaskDialogComponent } from '../task-dialog/task-dialog.component';
+import { TaskDialogComponent } from 'src/app/views/task-dialog/task-dialog.component';
+import { displayedColumns } from 'src/app/config/task-list.config';
 
 @Component({
   selector: 'app-tasks-list',
@@ -16,9 +16,7 @@ import { TaskDialogComponent } from '../task-dialog/task-dialog.component';
 })
 export class TasksListComponent implements OnInit {
   // isListTasks!: TasksStateModel;
-  displayedColumns: string[] = ['id', 'name', 'created', 'completed', 'actions'];
-
-  tasksForm!: FormGroup;
+  displayedColumns = displayedColumns;
 
   @Select(TaskState.selectTasks)
   tasksList$!: Observable<Task[]>;
@@ -30,10 +28,6 @@ export class TasksListComponent implements OnInit {
     private dialog: MatDialog
   ) {
     this.store.dispatch(new GetTasks());
-    this.tasksForm = new FormGroup({
-      name: new FormControl('', [Validators.required]),
-    });
-
     // this.tasksList$ = this.store.select(state => state.task.tasks);
     // this.isListTasks = this.store.selectSnapshot<TasksStateModel>(state => {
     //    return state.task.tasks.length;
@@ -45,22 +39,6 @@ export class TasksListComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-
-  get name() {
-    return this.tasksForm.get('name');
-  }
-
-  addTask(): void {
-    const newTask: Task = {
-      id: `string_${Math.trunc(Math.random() * 10)}`,
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-      name: this.tasksForm.value.name,
-      created: '24.10.2022 22:50',
-      completed: false,
-    };
-    this.store.dispatch(new AddTasks(newTask));
-    this.tasksForm.reset();
-  }
 
   updateTask(id: string): void {
     const newTask: Task = {

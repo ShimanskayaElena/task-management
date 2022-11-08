@@ -1,9 +1,9 @@
 import { Injectable, ErrorHandler } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { tap, catchError } from 'rxjs/operators';
-import { GetdataService } from '../getdata.service';
+import { GetdataService } from '../core/getdata.service';
 import { GetTasks, AddTasks, UpdateTasks, DeleteTasks } from '../actions/taska.action';
-import { TasksStateModel, Task } from '../models/task.model';
+import { TasksStateModel, Task } from '../interfaces/task.interface';
 
 export const getAppInitialState = (): TasksStateModel => ({
   tasks: [],
